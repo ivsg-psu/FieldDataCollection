@@ -1,400 +1,556 @@
+# Field Data Collection
 
-# FeatureExtraction_DataClean_BreakDataIntoLaps
-
-<!--
-The following template is based on:
-Best-README-Template
-Search for this, and you will find!
->
-<!-- PROJECT LOGO -->
-<br />
-<p align="center">
-  <!-- <a href="https://github.com/ivsg-psu/FeatureExtraction_Association_PointToPointAssociation">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a> -->
-
-  <h2 align="center"> FeatureExtraction_DataClean_BreakDataIntoLaps
-  </h2>
-
-  <pre align="center">
-    <img src=".\Images\RaceTrack.jpg" alt="main laps picture" width="960" height="540">
-    <!--figcaption>Fig.1 - The typical progression of map generation.</figcaption -->
-    <!--font size="-2">Photo by <a href="https://unsplash.com/ko/@samuelchenard?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Samuel Chenard</a> on <a href="https://unsplash.com/photos/Bdc8uzY9EPw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></font -->
-</pre>
-
-  <p align="center">
-    The purpose of this code is to break data into "laps", e.g. segments of data that are defined by a clear start condition and end condition. The code finds when a given path meets the "start" condition, then meets the "end" condition, and returns every portion of the path that is inside both conditions. Advanced features of the code include the ability to return the row indices defining each lap's data, as well as the path portions prior and after the lap area in case the "run in" or "run out" areas are needed. Yay! (I think)
-    <br />
-    <!-- a href="https://github.com/ivsg-psu/FeatureExtraction_Association_PointToPointAssociation"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/ivsg-psu/FeatureExtraction_Association_PointToPointAssociation/tree/main/Documents">View Demo</a>
-    <a href="https://github.com/ivsg-psu/FeatureExtraction_Association_PointToPointAssociation/issues">Report Bug</a>
-    <a href="https://github.com/ivsg-psu/FeatureExtraction_Association_PointToPointAssociation/issues">Request Feature</a -->
-  </p>
-</p>
+<img src=".\Images\FieldDataCollection_cropped.jpg" alt="Field Data Collection" width="1280" height="377">
 
 ***
 
+Welcome to the group's repo hub for repos that detail data procedures and data processing codes for field data. Specifically, this repo includes information and codes related to the the collection of data, processing of data, and storage of data. If there is a PROCEDURE that relates to collecting data in the field, then this is the area where the repos of these procedures should be linked.
+
+This is not the section to find information on particular hardware (e.g. the mapping van, P1, the Husky, etc.). Repos and details on the hardware itself can be found in the "Hardware" section. As well, this is not the section to find details or codes on specific data processing steps or the use of data, such as feature extraction, path planning, etc. There are entire sections of the team repo for these topics.
+
+<!-- img src=".\Images\PathPlanning_org.png" alt="Field Data Collection Org chart" width="1280" height="150" -->
+
 <!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+## Table of Contents
+
+<details open>
+  <summary> Click to see/unsee </summary>
+
   <ol>
     <li>
-      <a href="#about-the-project">About the Project</a>
+      <a href="#safety-procedures">Safety Procedures</a>
+      THese are repos for key safety procedures in common use in the team: testing procedures for autonomous vehicles, checkout procedures for vehicles, etc.
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
+      <a href="#visualizing-field-data">Visualizing Field Data</a>
+      This includes techniques to plot data using geoplot, animating data, etc.
     </li>
-    <li><a href="structure">Repo Structure</a>
-      <ul>
-        <li><a href="#directories">Top-Level Directories</li>
-        <li><a href="#dependencies">Dependencies</li>
-      </ul>
+    <li>
+      <a href="#gps-related-codes">GPS Related Codes</a>
+      This includes how to set up a GPS base station, setting up the GPS CORS server, etc.
     </li>
-    <li><a href="#functions">Functions</li>
-      <ul>
-        <li><a href="#basic-support-functions">Basic Support Functions</li>
-        <ul>
-          <li><a href="#fcn_laps_plotlapsxy">fcn_Laps_plotLapsXY - Plotting utility for lap outputs</li>
-          <li><a href="#fcn_laps_fillsamplelaps">fcn_Laps_fillSampleLaps - Creates test datasets</li>
-          <li><a href="#fcn_laps_plotzonedefinition">fcn_Laps_plotZoneDefinition - Plots zone definitions</li>
-          <li><a href="#fcn_laps_fillsamplelaps">fcn_Laps_fillSampleLaps - Creates test datasets</li>
-        </ul>
-        <li><a href="#core-functions">Core Functions</li>
-        <ul>
-          <li><a href="#fcn_laps_breakdataintolaps">fcn_Laps_breakDataIntoLaps - Core function of the repo, breaks data into laps</li>
-          <li><a href="#fcn_laps_checkzonetype">fcn_Laps_checkZoneType - Checks inputs to determine if zone is a point or line segment type</li>
-          <li><a href="#fcn_laps_breakdataintolapindices">fcn_Laps_breakDataIntoLapIndices - A more advanced version of fcn_Laps_breakDataIntoLaps, where the outputs are the indices that apply to each lap.</li>
-          <li><a href="#fcn_laps_findsegmentzonestartstop">fcn_Laps_findSegmentZoneStartStop - Supporting function that finds the portions of a path that meet a segment zone criteria</li>
-          <li><a href="#fcn_laps_findpointzonestartstopandminimum">fcn_Laps_findPointZoneStartStopAndMinimum - Supporting function that finds the portions of a path that meet a point zone criteria</li>
-        </ul>
-      </ul>
-    <li><a href="#usage">Usage</a></li>
-     <ul>
-     <li><a href="#general-usage">General Usage</li>
-     <li><a href="#examples">Examples</li>
-     <li><a href="#definition-of-endpoints">Definition of Endpoints</li>
-     </ul>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li>
+      <a href="#road-segment-codes">Road Segment Codes</a>
+      This includes examples of importing road networks from OSM / RoadXML / OpenDRIVE;  the RoadSegment library; plotting road segments; etc.
+    </li>
+    <li>
+      <a href="#equipment-operational-procedures">Equipment Operational Procedures</a>
+      Operation and maintenance procedures for: Mapping van, tractor-trailer (VNL300), steer-by-wire racecar (P1), autonomous wheelchair, Husky robot.
+    </li>
+    <li>
+      <a href="#typical-hardware-setups">Typical Hardware Setups</a>
+      Power system setup for shore power functionality, avoiding ground loops, time synchronization methods and codes, real-time computing platforms and the Audesse setup, cabling and connector standards.
+    </li>
+    <li>
+      <a href="#typical-software-setups">Typical Software Setups</a>
+      Typical software systems and deployments used on field data collection. This includes repos for ROS1 deployments, ROS2 deployments, etc.
+    </li>
+    <li>
+      <a href="#data-collection-procedures">Data Collection Procedures</a>
+      ROS setup and introduction, ROS diagnostic interface setup, ROS data recording methods, Raw data parsing, Pushing/pulling data from ROS into databases, Bridging ROS live into MATLAB/Simulink via UDP and SLRT, CANOpen blocksets for Simulink.
+    </li>
   </ol>
 </details>
 
-***
-
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-<!--[![Product Name Screen Shot][product-screenshot]](https://example.com)-->
-
-The most common location of our testing is the Larson Test Track, and we regularly use “laps around the track” as replicates, hence the name of the library. And when not on the test track and on public roads, data often needs to be segmented from one keypoint to another. For example, it is a common task to seek a subset of path data that resides only from one intersection to the next. While one could segment this data during data collection by simply stopping the vehicle recordings at each segment, it is impractical and dangerous to stop data collection at each and every possible intersection or feature point. Rather, vehicle or robot data is often collected by repeated driving of an area over/over without stopping. So, the final data set may contain many replicates of the area of interest.
-
-This "Laps" code assists in breaking recorded path data into paths by defining specific start and end locations, for example from intersection "A" to stop sign "B". Specifically, the purpose of this code is to break data into "laps", e.g. segments of data that are defined by a clear start condition and end condition. The code finds when a given path meets the "start" condition, then meets the "end" condition, and returns every portion of the path that is inside both conditions. There are many advanced features as well including the ability to define excursion points, the number of points that must be within a condition for it to activate, and the ability to extract the portions of the paths before and after each lap, in addition to the data for each lap.
-
-* Inputs:
-  * either a "traversals" type, as explained in the Path library, or a path of XY points in N x 2 format
-  * the start, end, and optional excursions can be entered as either a line segment or a point and radius.  
-* Outputs
-  * Separate arrays of XY points, or of indices for the lap, with one array for each lap
-  * The function also can return the points that were not used for laps, e.g. the points before the first start and after the last end
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
+<a href="#field-data-collection">Back to top</a>
 
 ***
 
-<!-- GETTING STARTED -->
-## Getting Started
+### Safety Procedures
 
-To get a local copy up and running follow these simple steps.
+<!-- SAFETY PROCEDURES -->
+<details closed>
+  <summary> Click to see/unsee </summary>
+  <ul>
+    <li> <h2> Lab Safety </h2>
+      <a href="https://ehs.psu.edu/sites/ehs/files/psu_lab_electrical_safety_for_modified_or_lab-made_equipment_final_11_18_22.docx">
+      Penn State's policy for modified electrical equipment.
+      </a>
+      <br>
+      This EHS document lists policies for using and maintaining electrical equipment with focus on high-voltage safety. Some notes:
+      <ul>
+          <li> No live electrical work 50 volts or higher is permitted in labs </li>
+          <li> 120 volt cords must be disconnected for all electrical servicing. </li>
+          <li> Lab personnel are not allowed to handle any physical infrastructure related to building electrical systems, such as fuse boxes. </li>
+      </ul>
+    </li>
+    <li> <h2> Autonomous Vehicle Testing Safety </h2>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_SafetyProcedures_AutonomousRobotTestingProcedureOrdering/wiki">
+      FieldDataCollection_SafetyProcedures_AutonomousRobotTestingProcedureOrdering
+      </a>
+      <br>
+      This repo lists safety procedures and test ordering related to the start-up operation of an autonomous vehicle.
+    </li>
+  </ul>
+</details>
 
-### Installation
-
-1. Make sure to run MATLAB 2020b or higher. Why? The "digitspattern" command used in the DebugTools utilities was released late 2020 and this is used heavily in the Debug routines. If debugging is shut off, then earlier MATLAB versions will likely work, and this has been tested back to 2018 releases.
-
-2. Clone the repo
-
-   ```sh
-   git clone https://github.com/ivsg-psu/FeatureExtraction_DataClean_BreakDataIntoLaps
-   ```
-
-3. Run the main code in the root of the folder (script_demo_Laps.m), this will download the required utilities for this code, unzip the zip files into a Utilities folder (.\Utilities), and update the MATLAB path to include the Utility locations. This install process will only occur the first time. Note: to force the install to occur again, delete the Utilities directory and clear all global variables in MATLAB (type: "clear global *").
-4. Confirm it works! Run script_demo_Laps. If the code works, the script should run without errors. This script produces numerous example images such as those in this README file.
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
-
-***
-
-<!-- STRUCTURE OF THE REPO -->
-### Directories
-
-The following are the top level directories within the repository:
-<ul>
- <li>/Documents folder: Descriptions of the functionality and usage of the various MATLAB functions and scripts in the repository.</li>
- <li>/Functions folder: The majority of the code for the point and patch association functionalities are implemented in this directory. All functions as well as test scripts are provided.</li>
- <li>/Utilities folder: Dependencies that are utilized but not implemented in this repository are placed in the Utilities directory. These can be single files but are most often folders containing other cloned repositories.</li>
-</ul>
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
+<a href="#field-data-collection">Back to top</a>
 
 ***
 
-### Dependencies
+## Visualizing Field Data
 
-* [Errata_Tutorials_DebugTools](https://github.com/ivsg-psu/Errata_Tutorials_DebugTools) - The DebugTools repo is used for the initial automated folder setup, and for input checking and general debugging calls within subfunctions. The repo can be found at: <https://github.com/ivsg-psu/Errata_Tutorials_DebugTools>
+<!-- VISUALIZING FIELD DATA -->
+<details closed>
+  <summary> Click to see/unsee </summary>
+  <ul>
+      <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_PlotRoad">
+      FieldDataCollection_VisualizingFieldData_PlotRoad
+      </a>
+      <br>
+      Main plotting library supporting core MATLAB functions to plot XY, XYZ, LLA data, including color mapping.
+    </li>
+      <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_PlotCV2X">
+      FieldDataCollection_VisualizingFieldData_PlotCV2X
+      </a>
+      <br>
+      MATLAB tools for plotting CV2X data
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_MapPanAndZoom/wiki">
+      FieldDataCollection_VisualizingFieldData_MapPanAndZoom
+      <br>
+      <img src="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_MapPanAndZoom/blob/master/MapPanAndZoom_Satellite.png" height="100"
+       width="150" >
+      <img src="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_MapPanAndZoom/blob/master/MapPanAndZoom_OSM.png" height="100"
+      width="150" >
+      <img src="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_MapPanAndZoom/blob/master/MapPanAndZoom_Streets.png" height="100"
+      width="150" >
+      <img src="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_MapPanAndZoom/blob/master/MapPanAndZoom_StreetsDark.png"
+      height="100" width="150" >
+      <img src="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_MapPanAndZoom/blob/master/MapPanAndZoom_Landcover.png" height="100"
+      width="150" >
+      <img src="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_MapPanAndZoom/blob/master/MapPanAndZoom_Topographic.png"
+       height="100" width="150" >
+      </a>
+      <br>
+      This is code demonstrating MATLAB map plotting, as well as an ability to do synchronized pan and zoom across the figures.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_AnimatedGeoplot/wiki">
+      FieldDataCollection_VisualizingFieldData_AnimatedGeoplot
+      <br>
+      <img
+            src="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_MapPanAndZoom/blob/master/MapPanAndZoom_Satellite.png"
+            height="100"
+            width="150"
+      >
+      </a>
+      <br>
+      A simple example showing animation of a geoplot in MATLAB, wherein a point on the test track is moved North and the map moves underneath it where
+      point remains centered and seems unmoving.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_testTrackImageFromGoogle">
+         FieldDataCollection_VisualizingFieldData_testTrackImageFromGoogle
+      </a>
+      <br>
+      This code produces a VERY high resolution image of the test track by tiling high resolution images obtained by Google Maps API.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_VisualizingHighDensityData">
+         FieldDataCollection_VisualizingFieldData_VisualizingHighDensityData
+      </a>
+      <br>
+      This details the code to visualize 2-D high density data.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_StitchingImgFromSmallToBig">
+         FieldDataCollection_VisualizingFieldData_StitchingImgFromSmallToBig
+      </a>
+      <br>
+      This details the code to stitch data of small images into a large image.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_pixels2LLA">
+         FieldDataCollection_VisualizingFieldData_pixels2LLA
+      </a>
+      <br>
+      This details the code to find the coordinate of the brighest point on the geoplot and covert it to LLA coordinate.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_PlotWorkZone">
+         FieldDataCollection_VisualizingFieldData_PlotWorkZone
+      </a>
+      <br>
+      Functions to plot common work zone objects in 2D.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_LoadWorkZone">
+         FieldDataCollection_VisualizingFieldData_LoadWorkZone
+      </a>
+      <br>
+      This is the repo that loads Work Zone scenario data for the ADS demonstrator project.
+    </li>
+  </ul>
+</details>
 
-* [PathPlanning_PathTools_PathClassLibrary](https://github.com/ivsg-psu/PathPlanning_PathTools_PathClassLibrary) - the PathClassLibrary contains tools used to find intersections of the data with particular line segments, which is used to find start/end/excursion locations in the functions. The repo can be found at: <https://github.com/ivsg-psu/PathPlanning_PathTools_PathClassLibrary>
-
-    Each should be installed in a folder called "Utilities" under the root folder, namely ./Utilities/DebugTools/ , ./Utilities/PathClassLibrary/ . If you wish to put these codes in different directories, the main call stack in script_demo_(reponame) can be easily modified with strings specifying the different location, but the user will have to make these edits directly.
-
-    For ease of getting started, the zip files of the directories used - without the .git repo information, to keep them small - are included in this repo.
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
-
-***
-
-<!-- FUNCTION DEFINITIONS -->
-## Functions
-
-### Basic Support Functions
-
-#### fcn_Laps_plotLapsXY
-
-The function fcn_Laps_plotLapsXY plots the laps. For example, the function was used to make the plot below of the last Sample laps.
-<pre align="center">
-  <img src=".\Images\fcn_Laps_plotLapsXY.png" alt="fcn_Laps_plotLapsXY picture" width="400" height="300">
-  <figcaption>Fig.1 - The function fcn_Laps_plotLapsXY plots the lap outputs.</figcaption>
-  <!--font size="-2">Photo by <a href="https://unsplash.com/ko/@samuelchenard?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Samuel Chenard</a> on <a href="https://unsplash.com/photos/Bdc8uzY9EPw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></font -->
-</pre>
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
-
-***
-
-#### fcn_Laps_fillSampleLaps
-
-The function fcn_Laps_fillSampleLaps creates dummy data to test lap functions. The test laps are in general difficult situations, including scenarios where laps loop back onto themself and/or with separate looping structures. These challenges show that the library can work on varying and complicated data sets. NOTE: within this function, commented out typically, there is code to allow users to draw their own lap test cases.
-
-<pre align="center">
-  <img src=".\Images\fcn_Laps_fillSampleLaps.png" alt="fcn_Laps_fillSampleLaps picture" width="400" height="300">
-  <figcaption>Fig.2 - The function fcn_Laps_fillSampleLaps creates test data sets for exercising lap functions.</figcaption>
-  <!--font size="-2">Photo by <a href="https://unsplash.com/ko/@samuelchenard?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Samuel Chenard</a> on <a href="https://unsplash.com/photos/Bdc8uzY9EPw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></font -->
-</pre>
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
-
-***
-
-#### fcn_Laps_plotZoneDefinition
-
-The function fcn_Laps_plotZoneDefinition plots any type of zone, allowing user-defined colors. For example, the figure below shows a radial zone for the start, and a line segment for the end. For the line segment, an arrow is given that indicates which direction the segment must be crossed in order for the condition to be counted.
-
-<pre align="center">
-  <img src=".\Images\fcn_Laps_plotZoneDefinition.png" alt="fcn_Laps_plotZoneDefinition picture" width="400" height="300">
-  <figcaption>Fig.3 - The function fcn_Laps_plotZoneDefinition plots the zone definitions.</figcaption>
-  <!--font size="-2">Photo by <a href="https://unsplash.com/ko/@samuelchenard?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Samuel Chenard</a> on <a href="https://unsplash.com/photos/Bdc8uzY9EPw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></font -->
-</pre>
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
-
-***
-
-#### fcn_Laps_plotSegmentZoneDefinition
-
-The function fcn_Laps_plotSegmentZoneDefinition plots a segment zone, allowing user-defined colors. This function is mostly used to support fcn_Laps_plotZoneDefinition.m.
-
-<!--pre align="center">
-  <img src=".\Images\fcn_Laps_plotZoneDefinition.png" alt="fcn_Laps_plotZoneDefinition picture" width="400" height="300">
-  <figcaption>Fig.3 - The function fcn_Laps_plotZoneDefinition plots the zone definitions.</figcaption>
-  <!--font size="-2">Photo by <a href="https://unsplash.com/ko/@samuelchenard?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Samuel Chenard</a> on <a href="https://unsplash.com/photos/Bdc8uzY9EPw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></font>
-</pre -->
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
-
-***
-
-### Core Functions
-
-#### fcn_Laps_breakDataIntoLaps
-
-The function fcn_Laps_breakDataIntoLaps is the core function for this repo that breaks data into laps. Note: the example shown below uses radial zone definitions, and the results illustrate how a lap, when it is within a start zone, starts at the FIRST point within a start zone. Similarly, each lap ends at the LAST point before exiting the end zone definition. The input data is a traversal type for this particular function.
-
-<pre align="center">
-  <img src=".\Images\fcn_Laps_breakDataIntoLaps.png" alt="fcn_Laps_breakDataIntoLaps picture" width="400" height="300">
-  <figcaption>Fig.4 - The function fcn_Laps_breakDataIntoLaps is the core function in the repo, and breaks data into laps.</figcaption>
-  <!--font size="-2">Photo by <a href="https://unsplash.com/ko/@samuelchenard?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Samuel Chenard</a> on <a href="https://unsplash.com/photos/Bdc8uzY9EPw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></font -->
-</pre>
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
-
-***
-
-#### fcn_Laps_checkZoneType
-
-The function fcn_Laps_checkZoneType supports fcn_Laps_breakDataIntoLaps by checking if the zone definition inputs are either a point or line segment zone specification.
-
-<!--pre align="center">
-  <img src=".\Images\fcn_Laps_breakDataIntoLaps.png" alt="fcn_Laps_breakDataIntoLaps picture" width="400" height="300">
-  <figcaption>Fig.5 - The function fcn_Laps_checkZoneType checks inputs to determine if zones are point or line segment type.</figcaption>
-  <!--font size="-2">Photo by <a href="https://unsplash.com/ko/@samuelchenard?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Samuel Chenard</a> on <a href="https://unsplash.com/photos/Bdc8uzY9EPw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></font>
-</pre-->
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
-
-***
-
-#### fcn_Laps_breakDataIntoLapIndices
-
-The function fcn_Laps_breakDataIntoLapIndices is a more advanced version of fcn_Laps_breakDataIntoLaps, where the outputs are the indices that apply to each lap. The input type is also easier to use, a "path" type which is just an array of [X Y]. The example here shows the use of a segment type zone for the start zone, a point-radius type zone for the end zone. The results of this function are the row indices of the data. The plot below illustrates that the function returns 3 laps in this example, and as well returns the pre-lap and post-lap data. One can observe that it is common that the prelap data for one lap (Lap 2) consists of the post-lap data for the prior lap (Lap 1).
-
-<pre align="center">
-  <img src=".\Images\fcn_Laps_breakDataIntoLapIndices.png" alt="fcn_Laps_breakDataIntoLapIndices picture" width="600" height="300">
-  <figcaption>Fig.5 - The function fcn_Laps_breakDataIntoLapIndices is a more advanced version of fcn_Laps_breakDataIntoLaps, where the outputs are the indices that apply to each lap.</figcaption>
-  <!--font size="-2">Photo by <a href="https://unsplash.com/ko/@samuelchenard?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Samuel Chenard</a> on <a href="https://unsplash.com/photos/Bdc8uzY9EPw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></font -->
-</pre>
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
+<a href="#field-data-collection">Back to top</a>
 
 ***
 
-#### fcn_Laps_findSegmentZoneStartStop
+## GPS Related Codes
 
-The function fcn_Laps_findSegmentZoneStartStop is a supporting function that finds the portions of a path that meet a segment zone criteria, returning the starting/ending indices for every crossing of a segment zone. The crossing must cross in the correct direction, and a segment is considered crossed if either the start or end of segment lie on the segment line. This is illustrated in the challenging example shown below, where the input path (thin blue) starts at the top, and then zig-zags repeatedly over a segment definition (green). For each time the blue line crosses the line segment, that portion of the path is saved as a separate possible crossing and thus, for this example, there are 5 possible crossings.
+<!-- GPS RELATED CODES -->
+<details closed>
+  <summary> Click to see/unsee </summary>
+  <ul>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_GPSRelatedCodes_GPSClass">
+      FieldDataCollection_GPSRelatedCodes_GPSClass
+      </a>
+      <br>
+      This is the class library, including both MATLAB and Python codes, to convert from LLA to ENU, ENU to LLA given a specific base station point.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/ivsg_master/wiki/GPS-Base-Station-Calibration">
+      GPS Base Station Calibration
+      </a>
+      <br>
+      Information and resources for setting up a GPS Base Station for use in a base/rover setup with Real Time Kinematic (RTK) positioning for
+      centimeter-level accuracy.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_GPSRelatedCodes_GPSBaseServer/wiki">
+      FieldDataCollection_GPSRelatedCodes_GPSBaseServer
+      </a>
+      <br>
+      Instructions for setting up a GPS Base Server for use in a base/rover setup with Real Time Kinematic (RTK) positioning for
+      centimeter-level accuracy.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/TrafficSimulators/wiki/Spatial-Coordinate-System">
+      Spatial Coordinate System of Simulator
+      </a>
+      <br>
+      This wiki page in the Traffic Simulation repo presents the coordinate systems for describing a point on the surface of the earth, compare the accuracy of various calculations using these coordinate systems, and provide the rationale for choosing a specified sequence of these coordinate systems (with the associated transformations) in the simulation environment built for the NSF CPS “Forgetful Databases” project.
+    </li>
 
-<pre align="center">
-  <img src=".\Images\fcn_Laps_findSegmentZoneStartStop.png" alt="fcn_Laps_findSegmentZoneStartStop picture" width="400" height="300">
-  <figcaption>Fig.5 - The function fcn_Laps_findSegmentZoneStartStop is a supporting function that finds the portions of a path that meet a segment zone criteria, returning the starting/ending indices for every crossing of a segment zone.</figcaption>
-  <!--font size="-2">Photo by <a href="https://unsplash.com/ko/@samuelchenard?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Samuel Chenard</a> on <a href="https://unsplash.com/photos/Bdc8uzY9EPw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></font -->
-</pre>
+  </ul>
 
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
+  <ul>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_GPSRelatedCodes_ReadingZED-F9PReceiverWithArduino">
+      Reading ZED-F9P Receiver with Arduino
+      </a>
+      <br>
+      This repo includes code for reading the ZED-F9P GNSS receiver with Arduino or Teensy microcontrollers.
+    </li>
 
-***
+  </ul>
 
-#### fcn_Laps_findPointZoneStartStopAndMinimum
+</details>
 
-The function fcn_Laps_findPointZoneStartStopAndMinimum is a supporting function that finds the portions of a path that meet a point zone criteria, returning the starting/ending indices for every crossing of a point zone. Note that a minimum number of points must be within the zone for it to be considered activated, which is useful for real-world data (such as GPS recordings) where noise may randomly push one point of a path randomly into a zone, and then jump out. This number of points threshold can be user-defined. In the example below, the threshold is 4 points and one can see that, for a path that crosses over the zone three times, that two of the crossings are found to meet the 4-point criteria.
-
-<pre align="center">
-  <img src=".\Images\fcn_Laps_findPointZoneStartStopAndMinimum.png" alt="fcn_Laps_findPointZoneStartStopAndMinimum picture" width="400" height="300">
-  <figcaption>Fig.6 - The function fcn_Laps_findPointZoneStartStopAndMinimum is a supporting function that finds the portions of a path that meet a point zone criteria, returning the starting/ending indices for every crossing of a point zone.</figcaption>
-  <!--font size="-2">Photo by <a href="https://unsplash.com/ko/@samuelchenard?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Samuel Chenard</a> on <a href="https://unsplash.com/photos/Bdc8uzY9EPw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></font -->
-</pre>
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
-
-***
-
-<!-- USAGE EXAMPLES -->
-## Usage
-<!-- Use this space to show useful examples of how a project can be used.
-Additional screenshots, code examples and demos work well in this space. You may
-also link to more resources. -->
-
-### General Usage
-
-Each of the functions has an associated test script, using the convention
-
-```sh
-script_test_fcn_fcnname
-```
-
-where fcnname is the function name as listed above.
-
-As well, each of the functions includes a well-documented header that explains inputs and outputs. These are supported by MATLAB's help style so that one can type:
-
-```sh
-help fcn_fcnname
-```
-
-for any function to view function details.
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
-
-***
-
-### Examples
-
-1. Run the main script to set up the workspace and demonstrate main outputs, including the figures included here:
-
-   ```sh
-   script_demo_Laps
-   ```
-
-    This exercises the main function of this code.
-
-2. After running the main script to define the included directories for utility functions, one can then navigate to the Functions directory and run any of the functions or scripts there as well. All functions for this library are found in the Functions sub-folder, and each has an associated test script. Run any of the various test scripts; each can work as a stand-alone script.
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
+<a href="#field-data-collection">Back to top</a>
 
 ***
 
-### Definition of Endpoints
+## Road Segment Codes
 
-The codeset uses two types of zone definitions:
+<!-- ROAD SEGMENT CODES -->
+<details closed>
+  <summary> Click to see/unsee </summary>
+  <ul>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_RoadSegClassLibrary">
+      The Road Segment Class Library
+      </a>
+      <br>
+      Contains information comparing road segment definitions across open file types, defining basic concepts of road segments, defining process for network import of information, etc
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_SegmentingInMATLAB/wiki">
+      FieldDataCollection_RoadSegments_SegmentingInMATLAB
+      </a>
+      <br>
+      A repo to host Dan Fescenmyer's work on road segmentation.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ImportingOSMxml/wiki">
+      FieldDataCollection_RoadSegments_ImportingOSMxml
+      </a>
+      <br>
+      A repo to demonstrate how to import and plot Open Street Map XML files.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ExportingOpenDRIVEfromMATLAB/wiki">
+      FieldDataCollection_RoadSegments_ExportingOpenDRIVEfromMATLAB
+      </a>
+      <br>
+      A repo to demonstrate how to export ASAM OpenDRIVE XML files from MATLAB.
+    </li>
+    <li>
+      Logging into Open Street Maps from IVSG:
+      <br>
+      sbrennan@psu.edu
+      <br>
+      ConnectedVehicles(+last4digits of Brennan's cell, no spaces)
+      <br>
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/TrafficSimulators_ExportTrafficInfo_ExtractRoadNetworkFromAimsunShapeFile/wiki">
+      TrafficSimulators_ExportTrafficInfo_ExtractRoadNetworkFromAimsunShapeFile
+      </a>
+      <br>
+      This details the code in the Traffic Simulation repo area to extract road network information from shapefiles exported from AIMSUN.
+    </li>
+    <li>
+      <a href="https://www.pasda.psu.edu/">
+      Pennsylvania Spatial Data Access (PASDA)
+      </a>
+      <br>
+      The PSU-hosted Pennsylvania Geospatial Data Clearinghouse
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ExportingRoadxml">
+FieldDataCollection_RoadSegments_ExportingRoadxml
+      </a>
+      <br>
+      A repo to demonstrate how to generate roadxml files.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_UpdateOSM">
+FieldDataCollection_RoadSegments_UpdateOSM
+      </a>
+      <br>
+      This repo details the procedure to update OSM data, including fixing OSM erros, in particular to fix disconnected roads.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ParseXODR">
+      FieldDataCollection_RoadSegments_ParseXODR
+      </a>
+      <br>
+      A repo to demonstrate how to parse a XODR file, including creating, editing, and converting between XDOR and MATLAB struct.
+    </li>
+  </ul>
+</details>
 
-1. A point location defined by the center and radius of the zone, and number of points that must be within this zone. An example of this would be "travel from home" or "to grandma's house". The point "zone" specification is given by an X,Y center location and a radius in the form of [X Y radius], as a 3x1 matrix. Whenever the path passes within the radius with a specified number of points within that radius, the minimum distance point then "triggers" the zone.
-
-    <img src=".\Images\point_zone_definition.png" alt="point_zone_definition picture" width="200" height="200">
-
-2. A line segment. An example is the start line or finish line of a race. A runner has not started or ended the race without crossing these lines. For line segment conditions, the inputs are condition formatted as: [X_start Y_start; X_end Y_end] wherein start denotes the starting coordinate of the line segment, end denotes the ending coordinate of the line segment. The direction of start/end lines of the segment are defined such that a correct crossing of the line is in the positive cross-product direction defined from the vector from start to end of the segment.
-
-    <img src=".\Images\linesegment_zone_definition.png" alt="linesegment_zone_definition picture" width="200" height="200">
-
-These two conditions can be mixed and matched, so that one could, for example, find every lap of data where someone went from a race start line (defined by a line segment) to a specific mountain peak defined by a point and radius.
-
-The two zone types above can be used to define three types of conditions:
-
-1. A start condition - where a lap starts. The lap does not end until and end condition is met.
-2. An end condition - where a lap ends. The lap cannot end until this condition is met.
-3. An excursion condition (optional) - a condition that must be met after the start point, and before the end point. The excursion condition must be met before the end point is counted.
-
-Why is an excursion point needed? Consider an example: it is common for the start line of a marathon to be quite close to the start line, sometimes even just a few hundred feet after the start line. This setup is for the practical reason that runners do not want to make long walks to/from starting locations to finish location either before, and definitely not after, such a race. As a consequence, it is common that, immediately after the start of the race, a runner will cross the finish line before actually finishing the race. This happens in field data collection when one accidentally passes a start/end station, and then backs up the vehicle to reset. In using these data recordings, we would not want these small segment to count as a complete laps, for example the 100-ish meter distance to be counted as a marathon run. Rather, one would require that the recorded data enter some excursion zone far away from the starting line for such a "lap" to count. Thus, this laps code allows one to define an excursion point as a location far out into the course that one must "hit" before the finish line is counted as the actual "finish" of the lap.
-
-* For each lap when there are repeats, the resulting laps of data include the lead-in and fade-out data, namely the datapoint immediately before the start condition was met, and the datapoint after the end condition is met. THIS CREATES REPLICATE DATA. However, this allows better merging of data for repeated laps, for example averaging data exactly from start to finish, or to more exactly calculate velocities on entry and exit of a lap by using windowed averages or filters.
-
-* Points inside the lap can be set for the point-type zones. These occur as optional input arguments in fcn_Laps_findPointZoneStartStopAndMinimum and in the core definition of a point zone as the 2nd argument. For example, the following code:
-
-  ```Matlab
-  start_definition = [10 3 0 0]; % Radius 10, 3 points must pass near [0 0]
-  ```
-
-  requires 3 points to occur within the start zone area.
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
+<a href="#field-data-collection">Back to top</a>
 
 ***
 
-<!-- LICENSE -->
-## License
+## Equipment Operational Procedures
 
-Distributed under the MIT License. See `LICENSE` for more information.
+<!-- EQUIPMENT OPERATIONAL PROCEDURES -->
+<details closed>
+  <summary> Click to see/unsee </summary>
+  <ul>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_RoadSegClassLibrary">
+      Mapping Van Operation and Maintenance
+      </a>
+      <br>
+      MUST ADD REPO: Battery health checks, vehicle maintenance, sensor maintenance, how to fill gas on vehicles while equipment is running.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VNL300/wiki">
+      FieldDataCollection_VNL300
+      </a>
+      <br>
+      Data collection from the Steer-by-Wire Tractor Trailer, the VNL300 Volvo Day Cab Tractor Trailer. This links to the repo for the tractor-trailer, which primarily includes the processing code for fuel economy analysis related to the NEXTCAR project (2016 to 2020).
+    </li>
+    <li>
+      <a href="http://www.projects.bucknell.edu/Beal_Automotive/">
+      Protocols for data collection from P1
+      </a>
+      <br>
+      This links to the website maintained by Prof. Beal for this vehicle
+    </li>
+    <li>
+      <a href="http://www.projects.bucknell.edu/Beal_Automotive/">
+      MUST ADD REPO: Protocols for data collection for the autonomous wheelchair
+      </a>
+      <br>
+      Information on how to operate the wheelchair.
+    </li>
+    <li>
+      <a href="http://www.projects.bucknell.edu/Beal_Automotive/">
+       MUST ADD REPO:Protocols for data collection with the Husky Robot
+      </a>
+      <br>
+      Information on how to operate the Husky.
+    </li>
+  </ul>
+</details>
 
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
+<a href="#field-data-collection">Back to top</a>
 
 ***
 
-## Major release versions
+## Typical Hardware Setups
 
-This code is still in development (alpha testing)
+<!-- TYPICAL HARDWARE SETUPS -->
+<details closed>
+  <summary> Click to see/unsee </summary>
+  <ul>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_TypicalHardwareSetups_PowerDistribution_ShorePowerArchitecture">
+      FieldDataCollection_TypicalHardwareSetups_PowerDistribution_ShorePowerArchitecture
+      </a>
+      <br>
+      Power architecture to enable "shore power" options, e.g. power sourced from batteries that are switchable to wall power or other sources.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VNL300/wiki">
+      MUST ADD: Ground loop
+      </a>
+      <br>
+      How to avoid ground loops
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_TypicalHardwareSetups_TimeSync_ArduinoUsingGPSPPS/wiki">
+      FieldDataCollection_TypicalHardwareSetups_TimeSync_ArduinoUsingGPSPPS
+      </a>
+      <br>
+      A repo for the Arduino code that is used to synchronize the Arduino's internal clock to an external GPS's PPS signal, then use that synchronization to create external triggers for other sensors at designated rates, e.g. 25 pulses per second for triggering a camera.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_TypicalHardwareSetups_EncoderCodes_ReadingEncodersWithTeensy">
+      FieldDataCollection_TypicalHardwareSetups_EncoderCodes_ReadingEncodersWithTeensy
+      </a>
+      <br>
+      A repo for the Teensy 4.1 code that is used to measure counts from a high resolution US Digital Encoder.
+    </li>
+    <li>
+      <a href="http://www.projects.bucknell.edu/Beal_Automotive/">
+      MUST ADD: Real-time computing and the Audesse
+      </a>
+      <br>
+      Information on real-time platforms and setting up the Audesse.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_TypicalHardwareSetups_CablesAndConnectors_Standards">
+      FieldDataCollection_TypicalHardwareSetups_CablesAndConnectors_Standards
+      </a>
+      <br>
+      A listing of the common cable and connector standards used across platforms. For example, this repo tells you: what connector should I use for CAN, for a trigger signal, for power connections, etc.?
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_TypicalHardwareSetups_V2x_ComsigniasDSRCplusCV2X">
+      FieldDataCollection_TypicalHardwareSetups_V2x_ComsigniasDSRCplusCV2X
+      </a>
+      <br>
+      Repo including test codes for Comsignia's DSRC/CV2x radio units.
+    </li>
+    <li>
+     MUST ADD: Hardware Platforms
+      </a>
+      <br>
+      Audesse
+      </a>
+      <br>
+      Raspberry Pi
+    </li>
+  </ul>
+</details>
 
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
+<a href="#field-data-collection">Back to top</a>
 
 ***
 
-<!-- CONTACT -->
-## Contact
+## Typical Software Setups
 
-Sean Brennan - [sbrennan@psu.edu](sbrennan@psu.edu)
+<!-- TYPICAL SOFTWARE SETUPS -->
+<details closed>
+  <summary> Click to see/unsee </summary>
+  <ul>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_TypicalSoftwareSetups_ROS2deployments">
+      FieldDataCollection_TypicalSoftwareSetups_ROS2deployments
+      </a>
+      <br>
+      ROS2 deployments and sensor integrations, with focus on field data collection (mapping van, roadside computers, etc.).
+    </li>
+  </ul>
+</details>
 
-Project Link: [hhttps://github.com/ivsg-psu/FeatureExtraction_DataClean_BreakDataIntoLaps](https://github.com/ivsg-psu/FeatureExtraction_DataClean_BreakDataIntoLaps)
-
-<a href="#featureextraction_dataclean_breakdataintolaps">Back to top</a>
+<a href="#field-data-collection">Back to top</a>
 
 ***
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+## Data Collection Procedures
+
+<!-- DATA COLLECTION PROCEDURES -->
+<details closed>
+  <summary> Click to see/unsee </summary>
+  <ul>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_RoadSegClassLibrary">
+      MUST ADD: ROS setup and introduction
+      </a>
+      <br>
+      How to set up ROS for IVSG, typical usage examples, learning.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_DataCollectionProcedures_ROSDiagnotsticInterface">
+      FieldDataCollection_DataCollectionProcedures_ROSDiagnotsticInterface
+      </a>
+      <br>
+      How to set up watchdog and health monitoring in ROS.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_RoadSegClassLibrary">
+      MUST ADD: ROS data recording methods
+      </a>
+      <br>
+      How to start and end collection process, record data, and transmit data - includes code that shows how to parse bag files automatically into 1 GB file size.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_DataCollectionProcedures_RawDataParsing">
+      FieldDataCollection_DataCollectionProcedures_RawDataParsing
+      </a>
+      <br>
+      How to parse the raw *.bag files into .csv format then read into MATLAB for further processing.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_DataCollectionProcedures_PushingDataToDatabase">
+       Pushing data from ROS into databases.
+      </a>
+      <br>
+      How to parse the raw *.bag files into raw data database.
+    </li>
+    <li>
+      <a href="http://www.projects.bucknell.edu/Beal_Automotive/">
+      MUST ADD: Bridging ROS live into MATLAB/Simulink via UDP and SLRT
+      </a>
+      <br>
+      How to push data live into SLRT.
+    </li>
+    <li>
+      <a href="http://www.projects.bucknell.edu/Beal_Automotive/">
+      MUST ADD: CANOpen blocksets for Simulink
+      </a>
+      <br>
+      How to access CAN data from within Simulink
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_DataCollectionProcedures_DataTransferWithDMS">
+      FieldDataCollection_DataCollectionProcedures_DataTransferWithDMS
+      </a>
+      <br>
+      This repo details the work to push to and pull data from the PennDOT DMS.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_DataCollectionProcedures_AutomatingDataTransferToDMSUsingCommandLine">
+      FieldDataCollection_DataCollectionProcedures_AutomatingDataTransferToDMSUsingCommandLine
+      </a>
+      <br>
+      This repo details the work to automate the data transfer with DMS using command line.
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_DataCollectionProcedures_StitchingImagesToVideo">
+     FieldDataCollection_DataCollectionProcedures_StitchingImagesToVideo
+      </a>
+      <br>
+      This repo details the work to stitch images into a video.
+    </li>
+  </ul>
+</details>
+
+<a href="#field-data-collection">Back to top</a>
+
+## ITEMS TO ADD
+
+## Digital Twin Codes (Summer '21)
