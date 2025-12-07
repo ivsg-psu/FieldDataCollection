@@ -75,7 +75,7 @@ This is not the section to find information on particular hardware (e.g. the map
       </ul>
     </li>
     <li> <h2> Autonomous Vehicle Testing Safety </h2>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_SafetyProcedures_AutonomousRobotTestingProcedureOrdering/wiki">
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_SafetyProcedures_AutonomousRobotTestingProcedureOrdering">
       FieldDataCollection_SafetyProcedures_AutonomousRobotTestingProcedureOrdering
       </a>
       <br>
@@ -109,7 +109,7 @@ This is not the section to find information on particular hardware (e.g. the map
       MATLAB tools for plotting CV2X data
     </li>
     <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_MapPanAndZoom/wiki">
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_MapPanAndZoom">
       FieldDataCollection_VisualizingFieldData_MapPanAndZoom
       <br>
       <img src="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_MapPanAndZoom/blob/master/MapPanAndZoom_Satellite.png" height="100"
@@ -129,7 +129,7 @@ This is not the section to find information on particular hardware (e.g. the map
       This is code demonstrating MATLAB map plotting, as well as an ability to do synchronized pan and zoom across the figures.
     </li>
     <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_AnimatedGeoplot/wiki">
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_AnimatedGeoplot">
       FieldDataCollection_VisualizingFieldData_AnimatedGeoplot
       <br>
       <img
@@ -213,7 +213,7 @@ This is not the section to find information on particular hardware (e.g. the map
       centimeter-level accuracy.
     </li>
     <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_GPSRelatedCodes_GPSBaseServer/wiki">
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_GPSRelatedCodes_GPSBaseServer">
       FieldDataCollection_GPSRelatedCodes_GPSBaseServer
       </a>
       <br>
@@ -225,7 +225,7 @@ This is not the section to find information on particular hardware (e.g. the map
       Spatial Coordinate System of Simulator
       </a>
       <br>
-      This wiki page in the Traffic Simulation repo presents the coordinate systems for describing a point on the surface of the earth, compare the accuracy of various calculations using these coordinate systems, and provide the rationale for choosing a specified sequence of these coordinate systems (with the associated transformations) in the simulation environment built for the NSF CPS “Forgetful Databases” project.
+      This page in the Traffic Simulation repo presents the coordinate systems for describing a point on the surface of the earth, compare the accuracy of various calculations using these coordinate systems, and provide the rationale for choosing a specified sequence of these coordinate systems (with the associated transformations) in the simulation environment built for the NSF CPS “Forgetful Databases” project.
     </li>
 
   </ul>
@@ -261,21 +261,21 @@ This is not the section to find information on particular hardware (e.g. the map
       Contains information comparing road segment definitions across open file types, defining basic concepts of road segments, defining process for network import of information, etc
     </li>
     <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_SegmentingInMATLAB/wiki">
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_SegmentingInMATLAB">
       FieldDataCollection_RoadSegments_SegmentingInMATLAB
       </a>
       <br>
       A repo to host Dan Fescenmyer's work on road segmentation.
     </li>
     <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ImportingOSMxml/wiki">
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ImportingOSMxml">
       FieldDataCollection_RoadSegments_ImportingOSMxml
       </a>
       <br>
       A repo to demonstrate how to import and plot Open Street Map XML files.
     </li>
     <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ExportingOpenDRIVEfromMATLAB/wiki">
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ExportingOpenDRIVEfromMATLAB">
       FieldDataCollection_RoadSegments_ExportingOpenDRIVEfromMATLAB
       </a>
       <br>
@@ -290,7 +290,7 @@ This is not the section to find information on particular hardware (e.g. the map
       <br>
     </li>
     <li>
-      <a href="https://github.com/ivsg-psu/TrafficSimulators_ExportTrafficInfo_ExtractRoadNetworkFromAimsunShapeFile/wiki">
+      <a href="https://github.com/ivsg-psu/TrafficSimulators_ExportTrafficInfo_ExtractRoadNetworkFromAimsunShapeFile">
       TrafficSimulators_ExportTrafficInfo_ExtractRoadNetworkFromAimsunShapeFile
       </a>
       <br>
@@ -345,7 +345,7 @@ FieldDataCollection_RoadSegments_UpdateOSM
       MUST ADD REPO: Battery health checks, vehicle maintenance, sensor maintenance, how to fill gas on vehicles while equipment is running.
     </li>
     <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_VNL300/wiki">
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VNL300">
       FieldDataCollection_VNL300
       </a>
       <br>
@@ -393,14 +393,14 @@ FieldDataCollection_RoadSegments_UpdateOSM
       Power architecture to enable "shore power" options, e.g. power sourced from batteries that are switchable to wall power or other sources.
     </li>
     <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_VNL300/wiki">
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VNL300">
       MUST ADD: Ground loop
       </a>
       <br>
       How to avoid ground loops
     </li>
     <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_TypicalHardwareSetups_TimeSync_ArduinoUsingGPSPPS/wiki">
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_TypicalHardwareSetups_TimeSync_ArduinoUsingGPSPPS">
       FieldDataCollection_TypicalHardwareSetups_TimeSync_ArduinoUsingGPSPPS
       </a>
       <br>
