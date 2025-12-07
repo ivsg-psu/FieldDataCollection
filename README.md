@@ -19,7 +19,7 @@ This is not the section to find information on particular hardware (e.g. the map
   <ol>
     <li>
       <a href="#safety-procedures">Safety Procedures</a>
-      THese are repos for key safety procedures in common use in the team: testing procedures for autonomous vehicles, checkout procedures for vehicles, etc.
+      These are repos for key safety procedures in common use in the team: testing procedures for autonomous vehicles, checkout procedures for vehicles, etc.
     </li>
     <li>
       <a href="#visualizing-field-data">Visualizing Field Data</a>
