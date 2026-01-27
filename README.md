@@ -255,45 +255,10 @@ This is not the section to find information on particular hardware (e.g. the map
   <ul>
     <li>
       <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_RoadSegClassLibrary">
-      The Road Segment Class Library
+      FieldDataCollection_RoadSegments_RoadSegClassLibrary
       </a>
       <br>
       Contains information comparing road segment definitions across open file types, defining basic concepts of road segments, defining process for network import of information, etc
-    </li>
-    <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_OSM2SHP">
-      FieldDataCollection_RoadSegments_OSM2SHP
-      </a>
-      <br>
-      The repo containing procedures and codes to convert Open Street Map data (OSM PBF files) to Shape (SHP files).
-    </li>
-    <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_PennDOTSHP">
-      FieldDataCollection_RoadSegments_PennDOTSHP
-      </a>
-      <br>
-      (PRIVATE) The repo containing procedures and codes to import PennDOTs Shape information (SHP files)
-    </li>    
-    <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_SegmentingInMATLAB">
-      FieldDataCollection_RoadSegments_SegmentingInMATLAB
-      </a>
-      <br>
-      A repo to host Dan Fescenmyer's work on road segmentation.
-    </li>
-    <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ImportingOSMxml">
-      FieldDataCollection_RoadSegments_ImportingOSMxml
-      </a>
-      <br>
-      A repo to demonstrate how to import and plot Open Street Map XML files.
-    </li>
-    <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ExportingOpenDRIVEfromMATLAB">
-      FieldDataCollection_RoadSegments_ExportingOpenDRIVEfromMATLAB
-      </a>
-      <br>
-      A repo to demonstrate how to export ASAM OpenDRIVE XML files from MATLAB.
     </li>
     <li>
       Logging into Open Street Maps from IVSG:
@@ -304,13 +269,27 @@ This is not the section to find information on particular hardware (e.g. the map
       <br>
     </li>
     <li>
-      <a href="https://github.com/ivsg-psu/TrafficSimulators_ExportTrafficInfo_ExtractRoadNetworkFromAimsunShapeFile">
-      TrafficSimulators_ExportTrafficInfo_ExtractRoadNetworkFromAimsunShapeFile
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ImportingOSMxml">
+      FieldDataCollection_RoadSegments_ImportingOSMxml
       </a>
       <br>
-      This details the code in the Traffic Simulation repo area to extract road network information from shapefiles exported from AIMSUN.
+      A repo to demonstrate how to import and plot Open Street Map XML files.
+    </li>
+     <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_UpdateOSM">
+      FieldDataCollection_RoadSegments_UpdateOSM
+      </a>
+      <br>
+      This repo details the procedure to update OSM data, including fixing OSM erros, in particular to fix disconnected roads.
     </li>
     <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_OSM2SHP">
+      FieldDataCollection_RoadSegments_OSM2SHP
+      </a>
+      <br>
+      The repo containing procedures and codes to convert Open Street Map data (OSM PBF files) to Shape (SHP files).
+    </li>
+        <li>
       <a href="https://www.pasda.psu.edu/">
       Pennsylvania Spatial Data Access (PASDA)
       </a>
@@ -318,18 +297,32 @@ This is not the section to find information on particular hardware (e.g. the map
       The PSU-hosted Pennsylvania Geospatial Data Clearinghouse
     </li>
     <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_PennDOTSHP">
+      FieldDataCollection_RoadSegments_PennDOTSHP
+      </a>
+      <br>
+      (PRIVATE) The repo containing procedures and codes to import PennDOTs Shape information (SHP files)
+    </li> 
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_SegmentingInMATLAB">
+      FieldDataCollection_RoadSegments_SegmentingInMATLAB
+      </a>
+      <br>
+      A repo to host Dan Fescenmyer's work on road segmentation.
+    </li>
+    <li>
       <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ExportingRoadxml">
-FieldDataCollection_RoadSegments_ExportingRoadxml
+      FieldDataCollection_RoadSegments_ExportingRoadxml
       </a>
       <br>
       A repo to demonstrate how to generate roadxml files.
     </li>
     <li>
-      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_UpdateOSM">
-FieldDataCollection_RoadSegments_UpdateOSM
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ExportingOpenDRIVEfromMATLAB">
+      FieldDataCollection_RoadSegments_ExportingOpenDRIVEfromMATLAB
       </a>
       <br>
-      This repo details the procedure to update OSM data, including fixing OSM erros, in particular to fix disconnected roads.
+      A repo to demonstrate how to export ASAM OpenDRIVE XML files from MATLAB.
     </li>
     <li>
       <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_ParseXODR">
@@ -564,6 +557,21 @@ FieldDataCollection_RoadSegments_UpdateOSM
 </details>
 
 <a href="#field-data-collection">Back to top</a>
+
+## Miscellaneous Repos
+<!-- Miscellaneous Repos -->
+<details closed>
+  <summary> Click to see/unsee </summary>
+  <ul>
+    <li>
+      <a href="https://github.com/ivsg-psu/TrafficSimulators_ExportTrafficInfo_ExtractRoadNetworkFromAimsunShapeFile">
+      TrafficSimulators_ExportTrafficInfo_ExtractRoadNetworkFromAimsunShapeFile
+      </a>
+      <br>
+      This details the code in the Traffic Simulation repo area to extract road network information from shapefiles exported from AIMSUN.
+    </li>
+  </ul>
+</details>
 
 ## ITEMS TO ADD
 
