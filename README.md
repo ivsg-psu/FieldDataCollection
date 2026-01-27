@@ -261,6 +261,20 @@ This is not the section to find information on particular hardware (e.g. the map
       Contains information comparing road segment definitions across open file types, defining basic concepts of road segments, defining process for network import of information, etc
     </li>
     <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_OSM2SHP">
+      FieldDataCollection_RoadSegments_OSM2SHP
+      </a>
+      <br>
+      The repo containing procedures and codes to convert Open Street Map data (OSM PBF files) to Shape (SHP files).
+    </li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_PennDOTSHP">
+      FieldDataCollection_RoadSegments_PennDOTSHP
+      </a>
+      <br>
+      (PRIVATE) The repo containing procedures and codes to import PennDOTs Shape information (SHP files)
+    </li>    
+    <li>
       <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_SegmentingInMATLAB">
       FieldDataCollection_RoadSegments_SegmentingInMATLAB
       </a>
