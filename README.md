@@ -94,14 +94,21 @@ This is not the section to find information on particular hardware (e.g. the map
 <details closed>
   <summary> Click to see/unsee </summary>
   <ul>
-      <li>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_PlotZoom">
+      FieldDataCollection_VisualizingFieldData_PlotZoom
+      </a>
+      <br>
+      Library that supports feature resampling such that number of points defining a feature changes with Zoom level in geoplot, allowing very fast plotting of complex features even at large geographic scales.
+    </li>
+    <li>
       <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_PlotRoad">
       FieldDataCollection_VisualizingFieldData_PlotRoad
       </a>
       <br>
       Main plotting library supporting core MATLAB functions to plot XY, XYZ, LLA data, including color mapping.
     </li>
-      <li>
+    <li>
       <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_PlotCV2X">
       FieldDataCollection_VisualizingFieldData_PlotCV2X
       </a>
