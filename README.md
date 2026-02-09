@@ -191,6 +191,13 @@ This is not the section to find information on particular hardware (e.g. the map
       <br>
       This is the repo that loads Work Zone scenario data for the ADS demonstrator project.
     </li>
+        <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_VisualizingFieldData_PlotTire">
+         FieldDataCollection_VisualizingFieldData_PlotTire
+      </a>
+      <br>
+      A repo to plot a single tire with increasing complexity, in 2D and 3D forms.
+    </li>
   </ul>
 </details>
 
