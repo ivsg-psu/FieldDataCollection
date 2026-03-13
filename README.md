@@ -304,12 +304,15 @@ This is not the section to find information on particular hardware (e.g. the map
       <br>
       The repo containing procedures and codes to convert Open Street Map data (OSM PBF files) to Shape (SHP files).
     </li>
-        <li>
-      <a href="https://www.pasda.psu.edu/">
-      Pennsylvania Spatial Data Access (PASDA)
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_DEMImport">
+      FieldDataCollection_RoadSegments_DEMImport
       </a>
       <br>
-      The PSU-hosted Pennsylvania Geospatial Data Clearinghouse
+      The repo containing codes to download and import Digital Elevation Maps (DEMs).          
+      NOTE: this repo uses data from <a href="https://www.pasda.psu.edu/">
+      Pennsylvania Spatial Data Access (PASDA)
+      </a>, which is the PSU-hosted Pennsylvania Geospatial Data Clearinghouse
     </li>
     <li>
       <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_PennDOTSHP">
