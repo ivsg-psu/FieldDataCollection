@@ -47,7 +47,7 @@ This is not the section to find information on particular hardware (e.g. the map
     </li>
     <li>
       <a href="#data-collection-procedures">Data Collection Procedures</a>
-      ROS setup and introduction, ROS diagnostic interface setup, ROS data recording methods, Raw data parsing, Pushing/pulling data from ROS into databases, Bridging ROS live into MATLAB/Simulink via UDP and SLRT, CANOpen blocksets for Simulink.
+      Mapping pipeline codes, ROS setup and introduction, ROS diagnostic interface setup, ROS data recording methods, Raw data parsing, Pushing/pulling data from ROS into databases, Bridging ROS live into MATLAB/Simulink via UDP and SLRT, CANOpen blocksets for Simulink.
     </li>
   </ol>
 </details>
@@ -501,6 +501,13 @@ This is not the section to find information on particular hardware (e.g. the map
 <details closed>
   <summary> Click to see/unsee </summary>
   <ul>
+    <li>
+      <a href="https://github.com/ivsg-psu/FieldDataCollection_DataCollectionProcedures_MappingPipeline">
+      FieldDataCollection_DataCollectionProcedures_MappingPipeline
+      </a>
+      <br>
+      2026 codes for processing data from mapping van into HD maps
+    </li>
     <li>
       <a href="https://github.com/ivsg-psu/FieldDataCollection_RoadSegments_RoadSegClassLibrary">
       MUST ADD: ROS setup and introduction
